@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import SearchBox from "../components/Common/SearchBox";
 import Sidebar from "../components/Common/Sidebar";
 import Title from "../components/Common/Title";
-import Footer from "../components/Footer/Footer";
 import MainHomeFilms from "../components/Home/MainHomeFilm";
 import RecommendGenres from "../components/Home/RecommendGenres";
 import TrendingNow from "../components/Home/TrendingNow";
@@ -17,6 +16,7 @@ import {
   getTVBannerInfo,
 } from "../services/home";
 import { HomeFilms, Item } from "../shared/types";
+import { getRandomAvatar } from "../shared/utils";
 import { useAppSelector } from "../store/hooks";
 const Home: FC = () => {
   const currentUser = useAppSelector((state) => state.auth.user);
@@ -61,6 +61,10 @@ const Home: FC = () => {
     { enabled: !!dataTV?.Trending }
   );
 
+  useEffect(() => {
+    console.log(getRandomAvatar());
+  });
+
   if (isErrorMovie) return <p>ERROR: {errorMovie.message}</p>;
 
   if (isErrorMovieDetail) return <p>ERROR: {errorMovieDetail.message}</p>;
@@ -73,13 +77,15 @@ const Home: FC = () => {
     <>
       <Title value="Moonlight | Watching Website" />
 
-      <div className="flex md:hidden justify-between items-center px-5 my-5">
-        <Link to="/" className="flex gap-2 items-center">
+      <div className="flex items-center justify-between px-5 my-5 md:hidden">
+        <Link
+          to="/"
+          className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
-            className="h-10 w-10 rounded-full object-cover"
+            className="object-cover w-10 h-10 rounded-full"
           />
-          <p className="text-xl text-white font-medium tracking-wider uppercase">
+          <p className="text-xl font-medium tracking-wider text-white uppercase">
             Moon<span className="text-primary">light</span>
           </p>
         </Link>
@@ -95,7 +101,7 @@ const Home: FC = () => {
         />
 
         <div className="flex-grow md:pt-7 pt-0 pb-7 border-x md:px-[2vw] px-[4vw] border-gray-darken min-h-screen">
-          <div className="flex justify-between md:items-end items-center">
+          <div className="flex items-center justify-between md:items-end">
             <div className="inline-flex gap-[40px] pb-[14px] border-b border-gray-darken relative">
               <button
                 onClick={() => {
@@ -105,8 +111,7 @@ const Home: FC = () => {
                 className={`${
                   currentTab === "tv" &&
                   "text-white font-medium after:absolute after:bottom-0 after:left-[13%] after:bg-white after:h-[3px] after:w-5"
-                } transition duration-300 hover:text-white`}
-              >
+                } transition duration-300 hover:text-white`}>
                 TV Show
               </button>
               <button
@@ -117,13 +122,12 @@ const Home: FC = () => {
                 className={`${
                   currentTab === "movie" &&
                   "text-white font-medium after:absolute after:bottom-0 after:right-[9%] after:bg-white after:h-[3px] after:w-5"
-                } transition duration-300 hover:text-white`}
-              >
+                } transition duration-300 hover:text-white`}>
                 Movie
               </button>
             </div>
-            <div className="flex gap-6 items-center">
-              {/* <div className="w-6 h-6 rounded-full border border-gray-lighten tw-flex-center cursor-pointer">
+            <div className="flex items-center gap-6">
+              {/* <div className="w-6 h-6 border rounded-full cursor-pointer border-gray-lighten tw-flex-center">
                 <IoMdNotificationsOutline size={17} />
               </div> */}
               <p>{currentUser?.displayName || "Anonymous"}</p>
@@ -134,7 +138,7 @@ const Home: FC = () => {
                     : "/defaultAvatar.jpg"
                 }
                 alt="User avatar"
-                className="w-7 h-7 rounded-full object-cover"
+                className="object-cover rounded-full w-7 h-7"
                 effect="opacity"
                 referrerPolicy="no-referrer"
               />
@@ -165,8 +169,6 @@ const Home: FC = () => {
           <TrendingNow />
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

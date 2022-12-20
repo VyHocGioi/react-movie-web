@@ -99,22 +99,23 @@ const Explore: FunctionComponent<ExploreProps> = () => {
           onClick={scrollToTop}
           className={`fixed bottom-[30px] right-[30px] z-10 transition duration-500 ${
             isShowScrollUpBtn ? "opacity-100" : "opacity-0"
-          }`}
-        >
+          }`}>
           <BsFillArrowUpCircleFill
             size={35}
-            className="text-primary hover:brightness-75 transition duration-300"
+            className="transition duration-300 text-primary hover:brightness-75"
           />
         </button>
       )}
 
-      <div className="flex md:hidden justify-between items-center px-5 my-5">
-        <Link to="/" className="flex gap-2 items-center">
+      <div className="flex items-center justify-between px-5 my-5 md:hidden">
+        <Link
+          to="/"
+          className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
-            className="h-10 w-10 rounded-full object-cover"
+            className="object-cover w-10 h-10 rounded-full"
           />
-          <p className="text-xl text-white font-medium tracking-wider uppercase">
+          <p className="text-xl font-medium tracking-wider text-white uppercase">
             Moon<span className="text-primary">light</span>
           </p>
         </Link>
@@ -134,8 +135,8 @@ const Explore: FunctionComponent<ExploreProps> = () => {
 
         <div className="flex-grow px-[2vw] pt-6">
           {!isMobile && (
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-white text-3xl font-medium uppercase ">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-medium text-white uppercase ">
                 Find films that best fit you
               </h2>
               <div className="relative max-w-[350px] w-full -mt-24 -mr-7">
@@ -154,8 +155,7 @@ const Explore: FunctionComponent<ExploreProps> = () => {
               className={`${
                 currentTab === "tv" &&
                 "text-white font-medium after:absolute after:bottom-0 after:left-[13%] after:bg-white after:h-[3px] after:w-5"
-              } transition duration-300 hover:text-white`}
-            >
+              } transition duration-300 hover:text-white`}>
               TV Show
             </button>
             <button
@@ -167,13 +167,15 @@ const Explore: FunctionComponent<ExploreProps> = () => {
               className={`${
                 currentTab === "movie" &&
                 "text-white font-medium after:absolute after:bottom-0 after:right-[9%] after:bg-white after:h-[3px] after:w-5"
-              } transition duration-300 hover:text-white`}
-            >
+              } transition duration-300 hover:text-white`}>
               Movie
             </button>
           </div>
 
-          <ExploreResult currentTab={currentTab} config={config} />
+          <ExploreResult
+            currentTab={currentTab}
+            config={config}
+          />
         </div>
 
         <div className="shrink-0 md:max-w-[310px] w-full md:py-12 pt-4 px-3">
@@ -181,7 +183,7 @@ const Explore: FunctionComponent<ExploreProps> = () => {
         </div>
 
         {isMobile && (
-          <h2 className="text-white text-3xl font-medium uppercase ml-3 mt-3">
+          <h2 className="mt-3 ml-3 text-3xl font-medium text-white uppercase">
             Find films that best fit you
           </h2>
         )}

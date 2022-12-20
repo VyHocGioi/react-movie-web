@@ -11,7 +11,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Common/Sidebar";
 import Title from "../components/Common/Title";
-import Footer from "../components/Footer/Footer";
 import DeleteAccount from "../components/Profile/DeleteAcount";
 import Email from "../components/Profile/Email";
 import EmailVerification from "../components/Profile/EmailVerification";
@@ -180,13 +179,15 @@ const Profile: FunctionComponent<ProfileProps> = () => {
 
       <ToastContainer />
 
-      <div className="flex md:hidden justify-between items-center px-5 my-5">
-        <Link to="/" className="flex gap-2 items-center">
+      <div className="flex items-center justify-between px-5 my-5 md:hidden">
+        <Link
+          to="/"
+          className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
-            className="h-10 w-10 rounded-full object-cover"
+            className="object-cover w-10 h-10 rounded-full"
           />
-          <p className="text-xl text-white font-medium tracking-wider uppercase">
+          <p className="text-xl font-medium tracking-wider text-white uppercase">
             Moon<span className="text-primary">light</span>
           </p>
         </Link>
@@ -202,16 +203,15 @@ const Profile: FunctionComponent<ProfileProps> = () => {
               e.preventDefault();
               reAuthentication(isShowPromptReAuthFor);
             }}
-            className="z-10 fixed md:w-[500px] md:min-h-[200px] min-h-[230px] top-[40%] md:left-[35%] left-[5%] right-[5%] bg-dark-lighten rounded-md px-3 py-2"
-          >
-            <p className="text-white font-medium mb-3 text-lg text-center">
+            className="z-10 fixed md:w-[500px] md:min-h-[200px] min-h-[230px] top-[40%] md:left-[35%] left-[5%] right-[5%] bg-dark-lighten rounded-md px-3 py-2">
+            <p className="mb-3 text-lg font-medium text-center text-white">
               Type your password again to reauthenticate
             </p>
             <input
               ref={oldPasswordValueRef}
               type="password"
               autoFocus
-              className="bg-dark-lighten-2 py-3 mt-3 rounded-md  outline-none px-5 text-white mb-4 w-full"
+              className="w-full px-5 py-3 mt-3 mb-4 text-white rounded-md outline-none bg-dark-lighten-2"
               placeholder="Type your password..."
             />
             <button className="px-6 py-4 bg-dark-lighten-2 rounded-xl hover:brightness-125 transition duration-300 text-white md:top-[130px] top-[160px] tw-absolute-center-horizontal">
@@ -220,8 +220,7 @@ const Profile: FunctionComponent<ProfileProps> = () => {
           </form>
           <div
             onClick={() => setIsShowPromptReAuthFor(undefined)}
-            className="fixed top-0 left-0 w-full h-full z-[5] bg-black/60"
-          ></div>
+            className="fixed top-0 left-0 w-full h-full z-[5] bg-black/60"></div>
         </>
       )}
 
@@ -237,15 +236,15 @@ const Profile: FunctionComponent<ProfileProps> = () => {
           setIsSidebarActive={setIsSidebarActive}
           isSidebarActive={isSidebarActive}
         />
-        <div className="flex-grow pt-7 md:pl-10 px-3">
+        <div className="flex-grow px-3 pt-7 md:pl-10">
           <div className="pb-4 border-b border-dark-lighten-2">
             <h1 className="text-[35px] text-white font-semibold uppercase">
               Account settings
             </h1>
           </div>
-          <div className="flex flex-col-reverse md:flex-row gap-8 md:gap-0 ">
+          <div className="flex flex-col-reverse gap-8 md:flex-row md:gap-0 ">
             <div className="flex-grow">
-              <p className="text-white mt-5 text-xl font-medium mb-3">
+              <p className="mt-5 mb-3 text-xl font-medium text-white">
                 User Information
               </p>
               <p>Here you can edit public information about yourself.</p>
@@ -281,8 +280,6 @@ const Profile: FunctionComponent<ProfileProps> = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

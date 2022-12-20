@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { FC, useState } from "react";
 import { AiOutlineHistory, AiOutlineHome } from "react-icons/ai";
-import { BiSearch, BiUserCircle } from "react-icons/bi";
+import { BiUserCircle } from "react-icons/bi";
 import { BsBookmarkHeart } from "react-icons/bs";
 import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineExplore } from "react-icons/md";
@@ -69,7 +69,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
       <ToastContainer />
 
       {isLoading && (
-        <div className="z-10 tw-flex-center fixed top-0 left-0 w-full h-full">
+        <div className="fixed top-0 left-0 z-10 w-full h-full tw-flex-center">
           <div className="w-28 h-28 border-[10px] rounded-full border-primary border-t-transparent animate-spin "></div>
         </div>
       )}
@@ -80,17 +80,18 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
     
       -translate-x-full fixed h-screen shadow-md transition duration-300 bg-dark-lighten z-50 ${
         isSidebarActive && "translate-x-0"
-      }`}
-      >
+      }`}>
         {!isMobile && (
-          <Link to="/" className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="flex items-center gap-3">
             <LazyLoadImage
               alt="Logo"
               src="/logo.png"
               effect="opacity"
               className="w-10 h-10"
             />
-            <h1 className="text-xl text-white tracking-widest font-semibold uppercase">
+            <h1 className="text-xl font-semibold tracking-widest text-white uppercase">
               <span>Moon</span>
               <span className="text-primary">light</span>
             </h1>
@@ -100,18 +101,16 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
         <div
           className={`text-white text-lg font-medium ${
             isSidebarActive ? "-mt-6" : "mt-12"
-          }`}
-        >
+          }`}>
           MENU
         </div>
-        <div className="mt-8 ml-4 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-8 ml-4">
           <Link
             to="/"
             className={`flex gap-6 items-center  ${
               location.pathname === "/" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
+            } hover:text-white transition duration-300`}>
             <AiOutlineHome size={25} />
             <p>Home</p>
           </Link>
@@ -121,8 +120,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/explore" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
+            } hover:text-white transition duration-300`}>
             <MdOutlineExplore size={25} />
             <p>Explore</p>
           </Link>
@@ -137,28 +135,16 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             <TbBrandTiktok size={30} />
             <p>Shorts</p>
           </Link> */}
-
-          <Link
-            to="/search"
-            className={`flex gap-6 items-center  ${
-              location.pathname === "/search" &&
-              "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
-            <BiSearch size={25} />
-            <p>Search</p>
-          </Link>
         </div>
 
-        <div className="text-white text-lg font-medium mt-12">PERSONAL</div>
-        <div className="mt-8 ml-4 flex flex-col gap-6">
+        <div className="mt-12 text-lg font-medium text-white">PERSONAL</div>
+        <div className="flex flex-col gap-6 mt-8 ml-4">
           <button
             onClick={() => personalPageHandler("/bookmarked")}
             className={`flex gap-6 items-center  ${
               location.pathname === "/bookmarked" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
+            } hover:text-white transition duration-300`}>
             <BsBookmarkHeart size={25} />
             <p>Bookmarked</p>
           </button>
@@ -168,22 +154,20 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/history" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
+            } hover:text-white transition duration-300`}>
             <AiOutlineHistory size={25} />
             <p>History</p>
           </button>
         </div>
 
-        <div className="text-white text-lg font-medium mt-12">GENERAL</div>
-        <div className="mt-8 ml-4 flex flex-col gap-6">
+        <div className="mt-12 text-lg font-medium text-white">GENERAL</div>
+        <div className="flex flex-col gap-6 mt-8 ml-4">
           <button
             onClick={() => personalPageHandler("/profile")}
             className={`flex gap-6 items-center  ${
               location.pathname === "/profile" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}
-          >
+            } hover:text-white transition duration-300`}>
             <BiUserCircle size={25} />
             <p>Profile</p>
           </button>
@@ -191,8 +175,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
           {!currentUser && (
             <Link
               to={`/auth?redirect=${encodeURIComponent(location.pathname)}`}
-              className="flex gap-5 items-center"
-            >
+              className="flex items-center gap-5">
               <HiOutlineLogin size={30} />
               <p>Login</p>
             </Link>
@@ -201,8 +184,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
           {currentUser && (
             <button
               onClick={signOutHandler}
-              className="flex gap-5 items-center"
-            >
+              className="flex items-center gap-5">
               <HiOutlineLogout size={30} />
               <p>Logout</p>
             </button>
@@ -214,8 +196,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
         onClick={() => setIsSidebarActive(false)}
         className={`bg-black/60 z-[5] fixed top-0 left-0 w-full h-full md:opacity-100 transition duration-300 ${
           isSidebarActive ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      ></div>
+        }`}></div>
     </>
   );
 };

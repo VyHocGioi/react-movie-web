@@ -13,7 +13,6 @@ import Home from "./pages/Home";
 import MovieInfo from "./pages/Movie/MovieInfo";
 import MovieWatch from "./pages/Movie/MovieWatch";
 import Profile from "./pages/Profile";
-import Search from "./pages/Search";
 import TVInfo from "./pages/TV/TVInfo";
 import TVWatch from "./pages/TV/TVWatch";
 import { auth, db } from "./shared/firebase";
@@ -91,14 +90,34 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="movie/:id" element={<MovieInfo />} />
-      <Route path="tv/:id" element={<TVInfo />} />
-      <Route path="movie/:id/watch" element={<MovieWatch />} />
-      <Route path="tv/:id/watch" element={<TVWatch />} />
-      <Route path="explore" element={<Explore />} />
-      <Route path="search" element={<Search />} />
-      <Route path="auth" element={<Auth />} />
+      <Route
+        index
+        element={<Home />}
+      />
+      <Route
+        path="movie/:id"
+        element={<MovieInfo />}
+      />
+      <Route
+        path="tv/:id"
+        element={<TVInfo />}
+      />
+      <Route
+        path="movie/:id/watch"
+        element={<MovieWatch />}
+      />
+      <Route
+        path="tv/:id/watch"
+        element={<TVWatch />}
+      />
+      <Route
+        path="explore"
+        element={<Explore />}
+      />
+      <Route
+        path="auth"
+        element={<Auth />}
+      />
       <Route
         path="bookmarked"
         element={
@@ -119,7 +138,10 @@ function App() {
           </Protected>
         }
       />
-      <Route path="*" element={<Error />} />
+      <Route
+        path="*"
+        element={<Error />}
+      />
     </Routes>
   );
 }

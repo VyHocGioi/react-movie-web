@@ -23,7 +23,6 @@ import Sidebar from "../Common/Sidebar";
 import SidebarMini from "../Common/SidebarMini";
 import Skeleton from "../Common/Skeleton";
 import Title from "../Common/Title";
-import Footer from "../Footer/Footer";
 import Comment from "./Comment/Comment";
 import SeasonSelection from "./SeasonSelection";
 
@@ -103,13 +102,15 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
         />
       )}
 
-      <div className="flex md:hidden justify-between items-center px-5 my-5">
-        <Link to="/" className="flex gap-2 items-center">
+      <div className="flex items-center justify-between px-5 my-5 md:hidden">
+        <Link
+          to="/"
+          className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
-            className="h-10 w-10 rounded-full object-cover"
+            className="object-cover w-10 h-10 rounded-full"
           />
-          <p className="text-xl text-white font-medium tracking-wider uppercase">
+          <p className="text-xl font-medium tracking-wider text-white uppercase">
             Moon<span className="text-primary">light</span>
           </p>
         </Link>
@@ -133,7 +134,7 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
             )}
             {detail && (
               <iframe
-                className="absolute w-full h-full top-0 left-0"
+                className="absolute top-0 left-0 w-full h-full"
                 src={
                   media_type === "movie"
                     ? embedMovie(detail.id)
@@ -145,24 +146,22 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 }
                 title="Film Video Player"
                 frameBorder="0"
-                allowFullScreen
-              ></iframe>
+                allowFullScreen></iframe>
             )}
           </div>
-          <div className="mt-5 pb-8">
-            <div className="flex justify-between md:text-base text-sm">
+          <div className="pb-8 mt-5">
+            <div className="flex justify-between text-sm md:text-base">
               <div className="flex-1">
                 {!detail && <Skeleton className="h-8 w-[400px]" />}
                 {detail && (
-                  <h1 className="text-white md:text-3xl text-xl font-medium">
+                  <h1 className="text-xl font-medium text-white md:text-3xl">
                     <Link
                       to={
                         media_type === "movie"
                           ? `/movie/${detail.id}`
                           : `/tv/${detail.id}`
                       }
-                      className="hover:brightness-75 transition duration-300"
-                    >
+                      className="transition duration-300 hover:brightness-75">
                       {(detail as DetailMovie).title ||
                         (detail as DetailTV).name}
                     </Link>
@@ -171,8 +170,11 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 {!detail && <Skeleton className="w-[100px] h-[23px] mt-5" />}
                 {detail && (
                   <div className="flex gap-5 mt-5">
-                    <div className="flex gap-2 items-center">
-                      <AiFillStar size={25} className="text-primary" />
+                    <div className="flex items-center gap-2">
+                      <AiFillStar
+                        size={25}
+                        className="text-primary"
+                      />
                       {media_type === "movie" && (
                         <p>{detail.vote_average.toFixed(1)}</p>
                       )}
@@ -180,8 +182,11 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                         <p>{currentEpisode?.vote_average.toFixed(1)}</p>
                       )}
                     </div>
-                    <div className="flex gap-2 items-center">
-                      <AiTwotoneCalendar size={25} className="text-primary" />
+                    <div className="flex items-center gap-2">
+                      <AiTwotoneCalendar
+                        size={25}
+                        className="text-primary"
+                      />
                       <p>
                         {media_type === "movie" &&
                           new Date(
@@ -197,13 +202,14 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 )}
                 {!detail && <Skeleton className="w-[100px] h-[23px] mt-2" />}
                 {!isMobile && detail && (
-                  <ul className="flex gap-2 flex-wrap mt-3">
+                  <ul className="flex flex-wrap gap-2 mt-3">
                     {detail.genres.map((genre) => (
-                      <li key={genre.id} className="mb-2">
+                      <li
+                        key={genre.id}
+                        className="mb-2">
                         <Link
                           to={`/explore?genre=${genre.id}`}
-                          className="px-3 py-1 bg-dark-lighten rounded-full hover:brightness-75 duration-300 transition"
-                        >
+                          className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75">
                           {genre.name}
                         </Link>
                       </li>
@@ -213,45 +219,48 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
               </div>
               {media_type === "tv" && currentEpisode && (
                 <div className="flex-1">
-                  <h2 className="md:text-xl italic uppercase text-gray-200 mt-2 text-right">
+                  <h2 className="mt-2 italic text-right text-gray-200 uppercase md:text-xl">
                     {currentEpisode.name}
                   </h2>
-                  <p className="text-right md:text-lg mt-2">
+                  <p className="mt-2 text-right md:text-lg">
                     Season {seasonId} &#8212; Episode {episodeId}
                   </p>
                 </div>
               )}
             </div>
             {isMobile && detail && (
-              <ul className="flex gap-2 flex-wrap mt-3">
+              <ul className="flex flex-wrap gap-2 mt-3">
                 {detail.genres.map((genre) => (
-                  <li key={genre.id} className="mb-2">
+                  <li
+                    key={genre.id}
+                    className="mb-2">
                     <Link
                       to={`/explore?genre=${genre.id}`}
-                      className="px-3 py-1 bg-dark-lighten rounded-full hover:brightness-75 duration-300 transition"
-                    >
+                      className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75">
                       {genre.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             )}
-            <div className="md:text-xl text-lg font-medium text-white mt-5">
+            <div className="mt-5 text-lg font-medium text-white md:text-xl">
               Overview:
             </div>
             {!detail && <Skeleton className="h-[84px] mt-2" />}
             {detail && (
               <ReadMore
                 limitTextLength={300}
-                className="md:text-lg text-base mt-1"
-              >
+                className="mt-1 text-base md:text-lg">
                 {media_type === "movie"
                   ? detail.overview
                   : currentEpisode?.overview}
               </ReadMore>
             )}
           </div>
-          <Comment media_type={media_type} id={detail?.id} />
+          <Comment
+            media_type={media_type}
+            id={detail?.id}
+          />
         </div>
         <div className="shrink-0 md:max-w-[400px] w-full relative px-6">
           {!isMobile && <SearchBox />}
@@ -261,12 +270,12 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
               films={recommendations?.filter((item) => item.id !== detail?.id)}
               limitNumber={4}
               isLoading={!recommendations}
-              className="md:mt-24 mt-0"
+              className="mt-0 md:mt-24"
             />
           )}
           {media_type === "tv" && (
-            <div className="md:mt-24 mt-0">
-              <p className="mb-6 text-xl font-medium flex justify-between items-center">
+            <div className="mt-0 md:mt-24">
+              <p className="flex items-center justify-between mb-6 text-xl font-medium">
                 <span className="text-white">Seasons:</span>
                 <BsThreeDotsVertical size={20} />
               </p>
@@ -279,7 +288,6 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
