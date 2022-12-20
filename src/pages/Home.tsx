@@ -20,6 +20,7 @@ import { getRandomAvatar } from "../shared/utils";
 import { useAppSelector } from "../store/hooks";
 const Home: FC = () => {
   const currentUser = useAppSelector((state) => state.auth.user);
+  console.log("🚀 ~ currentUser", currentUser);
   const [currentTab, setCurrentTab] = useState(
     localStorage.getItem("currentTab") || "tv"
   );
@@ -75,12 +76,10 @@ const Home: FC = () => {
 
   return (
     <>
-      <Title value="Moonlight | Watching Website" />
+      <Title value="HypoHub | Watching Website" />
 
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
-        <Link
-          to="/"
-          className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
             className="object-cover w-10 h-10 rounded-full"
@@ -111,7 +110,8 @@ const Home: FC = () => {
                 className={`${
                   currentTab === "tv" &&
                   "text-white font-medium after:absolute after:bottom-0 after:left-[13%] after:bg-white after:h-[3px] after:w-5"
-                } transition duration-300 hover:text-white`}>
+                } transition duration-300 hover:text-white`}
+              >
                 TV Show
               </button>
               <button
@@ -122,7 +122,8 @@ const Home: FC = () => {
                 className={`${
                   currentTab === "movie" &&
                   "text-white font-medium after:absolute after:bottom-0 after:right-[9%] after:bg-white after:h-[3px] after:w-5"
-                } transition duration-300 hover:text-white`}>
+                } transition duration-300 hover:text-white`}
+              >
                 Movie
               </button>
             </div>
@@ -163,11 +164,11 @@ const Home: FC = () => {
           )}
         </div>
 
-        <div className="shrink-0 max-w-[310px] w-full hidden lg:block px-6 top-0 sticky ">
+        {/* <div className="shrink-0 max-w-[310px] w-full hidden lg:block px-6 top-0 sticky ">
           <SearchBox />
           <RecommendGenres currentTab={currentTab} />
           <TrendingNow />
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -103,9 +103,7 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
       )}
 
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
-        <Link
-          to="/"
-          className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
             src="/logo.png"
             className="object-cover w-10 h-10 rounded-full"
@@ -146,7 +144,8 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 }
                 title="Film Video Player"
                 frameBorder="0"
-                allowFullScreen></iframe>
+                allowFullScreen
+              ></iframe>
             )}
           </div>
           <div className="pb-8 mt-5">
@@ -161,7 +160,8 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                           ? `/movie/${detail.id}`
                           : `/tv/${detail.id}`
                       }
-                      className="transition duration-300 hover:brightness-75">
+                      className="transition duration-300 hover:brightness-75"
+                    >
                       {(detail as DetailMovie).title ||
                         (detail as DetailTV).name}
                     </Link>
@@ -171,10 +171,7 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 {detail && (
                   <div className="flex gap-5 mt-5">
                     <div className="flex items-center gap-2">
-                      <AiFillStar
-                        size={25}
-                        className="text-primary"
-                      />
+                      <AiFillStar size={25} className="text-primary" />
                       {media_type === "movie" && (
                         <p>{detail.vote_average.toFixed(1)}</p>
                       )}
@@ -183,10 +180,7 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <AiTwotoneCalendar
-                        size={25}
-                        className="text-primary"
-                      />
+                      <AiTwotoneCalendar size={25} className="text-primary" />
                       <p>
                         {media_type === "movie" &&
                           new Date(
@@ -204,12 +198,11 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
                 {!isMobile && detail && (
                   <ul className="flex flex-wrap gap-2 mt-3">
                     {detail.genres.map((genre) => (
-                      <li
-                        key={genre.id}
-                        className="mb-2">
+                      <li key={genre.id} className="mb-2">
                         <Link
                           to={`/explore?genre=${genre.id}`}
-                          className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75">
+                          className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75"
+                        >
                           {genre.name}
                         </Link>
                       </li>
@@ -231,12 +224,11 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
             {isMobile && detail && (
               <ul className="flex flex-wrap gap-2 mt-3">
                 {detail.genres.map((genre) => (
-                  <li
-                    key={genre.id}
-                    className="mb-2">
+                  <li key={genre.id} className="mb-2">
                     <Link
                       to={`/explore?genre=${genre.id}`}
-                      className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75">
+                      className="px-3 py-1 transition duration-300 rounded-full bg-dark-lighten hover:brightness-75"
+                    >
                       {genre.name}
                     </Link>
                   </li>
@@ -250,17 +242,18 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
             {detail && (
               <ReadMore
                 limitTextLength={300}
-                className="mt-1 text-base md:text-lg">
+                className="mt-1 text-base md:text-lg"
+              >
                 {media_type === "movie"
                   ? detail.overview
                   : currentEpisode?.overview}
               </ReadMore>
             )}
           </div>
-          <Comment
+          {/* <Comment
             media_type={media_type}
             id={detail?.id}
-          />
+          /> */}
         </div>
         <div className="shrink-0 md:max-w-[400px] w-full relative px-6">
           {!isMobile && <SearchBox />}

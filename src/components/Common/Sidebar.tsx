@@ -75,16 +75,15 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
       )}
 
       <div
-        className={`shrink-0 md:max-w-[260px] w-[70vw] pl-8 top-0 pt-10  
+        className={`shrink-0 md:max-w-[260px] w-[70vw] pl-8 top-0 pt-10
         md:sticky md:translate-x-0 md:bg-transparent md:shadow-none
-    
+
       -translate-x-full fixed h-screen shadow-md transition duration-300 bg-dark-lighten z-50 ${
         isSidebarActive && "translate-x-0"
-      }`}>
+      }`}
+      >
         {!isMobile && (
-          <Link
-            to="/"
-            className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <LazyLoadImage
               alt="Logo"
               src="/logo.png"
@@ -92,8 +91,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
               className="w-10 h-10"
             />
             <h1 className="text-xl font-semibold tracking-widest text-white uppercase">
-              <span>Moon</span>
-              <span className="text-primary">light</span>
+              <span>Hypo</span>
+              <span className="text-primary">Hub</span>
             </h1>
           </Link>
         )}
@@ -101,7 +100,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
         <div
           className={`text-white text-lg font-medium ${
             isSidebarActive ? "-mt-6" : "mt-12"
-          }`}>
+          }`}
+        >
           MENU
         </div>
         <div className="flex flex-col gap-6 mt-8 ml-4">
@@ -110,7 +110,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}>
+            } hover:text-white transition duration-300`}
+          >
             <AiOutlineHome size={25} />
             <p>Home</p>
           </Link>
@@ -120,7 +121,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/explore" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}>
+            } hover:text-white transition duration-300`}
+          >
             <MdOutlineExplore size={25} />
             <p>Explore</p>
           </Link>
@@ -144,7 +146,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/bookmarked" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}>
+            } hover:text-white transition duration-300`}
+          >
             <BsBookmarkHeart size={25} />
             <p>Bookmarked</p>
           </button>
@@ -154,7 +157,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/history" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}>
+            } hover:text-white transition duration-300`}
+          >
             <AiOutlineHistory size={25} />
             <p>History</p>
           </button>
@@ -167,7 +171,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
             className={`flex gap-6 items-center  ${
               location.pathname === "/profile" &&
               "!text-primary border-r-4 border-primary font-medium"
-            } hover:text-white transition duration-300`}>
+            } hover:text-white transition duration-300`}
+          >
             <BiUserCircle size={25} />
             <p>Profile</p>
           </button>
@@ -175,7 +180,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
           {!currentUser && (
             <Link
               to={`/auth?redirect=${encodeURIComponent(location.pathname)}`}
-              className="flex items-center gap-5">
+              className="flex items-center gap-5"
+            >
               <HiOutlineLogin size={30} />
               <p>Login</p>
             </Link>
@@ -184,7 +190,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
           {currentUser && (
             <button
               onClick={signOutHandler}
-              className="flex items-center gap-5">
+              className="flex items-center gap-5"
+            >
               <HiOutlineLogout size={30} />
               <p>Logout</p>
             </button>
@@ -196,7 +203,8 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
         onClick={() => setIsSidebarActive(false)}
         className={`bg-black/60 z-[5] fixed top-0 left-0 w-full h-full md:opacity-100 transition duration-300 ${
           isSidebarActive ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}></div>
+        }`}
+      ></div>
     </>
   );
 };

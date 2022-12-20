@@ -12,12 +12,12 @@ import { getFirestore } from "firebase/firestore";
 // });
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBiO4NTttc68zMHFkRFXyK5qLsU9zXsJmg",
-  authDomain: "moonlight-40ecf.firebaseapp.com",
-  projectId: "moonlight-40ecf",
-  storageBucket: "moonlight-40ecf.appspot.com",
-  messagingSenderId: "1043878072437",
-  appId: "1:1043878072437:web:0fd78f6e64f3cfbe2d283c",
+  apiKey: "AIzaSyCraMhBHeHernV6SuFkUQ2n30RjeNP8yl4",
+  authDomain: "movie-react-1052d.firebaseapp.com",
+  projectId: "movie-react-1052d",
+  storageBucket: "movie-react-1052d.appspot.com",
+  messagingSenderId: "1008124061051",
+  appId: "1:1008124061051:web:db36de74f345a1ac3549de",
 };
 
 // const firebaseConfig = {
