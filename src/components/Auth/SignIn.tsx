@@ -60,7 +60,7 @@ const SignIn: FunctionComponent<SignInProps> = ({ setIsSignIn, isSignIn }) => {
         <div className="flex flex-col items-center mb-5">
           <div className="text-[50px] font-semibold mb-1 mx-auto">
             <div className="text-primary leading-none mb-4 text-center">
-              Sign In To Moonlight
+              Sign In
             </div>
           </div>
           <div className="flex gap-4 mb-8">
@@ -95,7 +95,7 @@ const SignIn: FunctionComponent<SignInProps> = ({ setIsSignIn, isSignIn }) => {
             />
             <label
               htmlFor="email"
-              className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+              className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
         translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
         `}
             >
@@ -116,7 +116,7 @@ const SignIn: FunctionComponent<SignInProps> = ({ setIsSignIn, isSignIn }) => {
             />
             <label
               htmlFor="password"
-              className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+              className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
         translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
         `}
             >

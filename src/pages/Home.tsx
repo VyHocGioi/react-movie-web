@@ -20,7 +20,6 @@ import { getRandomAvatar } from "../shared/utils";
 import { useAppSelector } from "../store/hooks";
 const Home: FC = () => {
   const currentUser = useAppSelector((state) => state.auth.user);
-  console.log("🚀 ~ currentUser", currentUser);
   const [currentTab, setCurrentTab] = useState(
     localStorage.getItem("currentTab") || "tv"
   );

@@ -86,13 +86,13 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarActive, setIsSidebarActive }) => {
           <Link to="/" className="flex items-center gap-3">
             <LazyLoadImage
               alt="Logo"
-              src="/logo.png"
+              src="/tvflix.png"
               effect="opacity"
               className="w-10 h-10"
             />
             <h1 className="text-xl font-semibold tracking-widest text-white uppercase">
-              <span>Hypo</span>
-              <span className="text-primary">Hub</span>
+              <span>TV</span>
+              <span className="text-primary">Flix</span>
             </h1>
           </Link>
         )}
