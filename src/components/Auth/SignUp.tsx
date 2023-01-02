@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { FaFacebookF } from "react-icons/fa";
@@ -17,6 +17,8 @@ import { convertErrorCodeToMessage, getRandomAvatar } from "../../shared/utils";
 import { useAppSelector } from "../../store/hooks";
 import ModalNotification from "./ModalNotification";
 import { signInWithProvider } from "./signInWithProvider";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, useSearchParams } from "react-router-dom";
 interface SignUpProps {
   setIsSignIn: any;
   isSignIn: boolean;
@@ -24,8 +26,16 @@ interface SignUpProps {
 
 const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
   const currentUser = useAppSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate(`${searchParams.get("redirect") || "/"}`);
+    }
+  }, [currentUser, navigate, searchParams]);
 
   const signUpHandler = async (values: { [key: string]: string }) => {
     try {
@@ -44,9 +54,29 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
         photoUrl: getRandomAvatar(),
         bookmarks: [],
         recentlyWatch: [],
+      }).then((user) => {
+        toast.success(`Sign up successfully`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     } catch (error: any) {
       setError(convertErrorCodeToMessage(error.code));
+
+      toast.error(convertErrorCodeToMessage(error.code), {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     setIsLoading(false);
@@ -54,17 +84,18 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
 
   return (
     <>
-      {currentUser && (
+      <ToastContainer />
+      {/* {currentUser && (
         <ModalNotification type="success" message={"Sign up successfully"} />
-      )}
+      )} */}
       {isLoading && (
         <div className="z-10 tw-flex-center h-screen relative">
           <div className="w-28 h-28 border-[10px] rounded-full border-primary border-t-transparent animate-spin "></div>
         </div>
       )}
-      {error && (
+      {/* {error && (
         <ModalNotification type="error" message={error} setError={setError} />
-      )}
+      )} */}
       <div className="px-4 py-2 rounded-xl max-w-xl w-full min-h-[500px] text-white/70 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center mb-5">
           <div className="text-[50px] font-semibold mb-1 mx-auto text-center md:text-left">
@@ -130,7 +161,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
                 />
                 <label
                   htmlFor="firstName"
-                  className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+                  className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
                 translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
                 `}
                 >
@@ -154,7 +185,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
                 />
                 <label
                   htmlFor="lastName"
-                  className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+                  className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
                 translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
                 `}
                 >
@@ -178,7 +209,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
               />
               <label
                 htmlFor="email"
-                className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+                className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
                 translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
                 `}
               >
@@ -201,7 +232,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ setIsSignIn, isSignIn }) => {
               />
               <label
                 htmlFor="password"
-                className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none 
+                className={`absolute left-5 text-gray-400 transition duration-500 pointer-events-none
                 translate-y-[-50%] visible peer-placeholder-shown:opacity-0 peer-placeholder-shown:invisible peer-placeholder-shown:translate-y-[-10%] ease-in-out
                 `}
               >
