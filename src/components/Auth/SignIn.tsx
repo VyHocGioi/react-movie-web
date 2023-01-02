@@ -3,7 +3,13 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { FormEvent, FunctionComponent, useRef, useState } from "react";
+import {
+  FormEvent,
+  FunctionComponent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -13,6 +19,8 @@ import { convertErrorCodeToMessage } from "../../shared/utils";
 import { useAppSelector } from "../../store/hooks";
 import ModalNotification from "./ModalNotification";
 import { signInWithProvider } from "./signInWithProvider";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 interface SignInProps {
   setIsSignIn: any;
@@ -25,6 +33,16 @@ const SignIn: FunctionComponent<SignInProps> = ({ setIsSignIn, isSignIn }) => {
   const currentUser = useAppSelector((state) => state.auth.user);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [timeLeft, setTimeLeft] = useState(2);
+  const isCloseModalAutomatically = timeLeft === 0;
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate(`${searchParams.get("redirect") || "/"}`);
+    }
+  }, [currentUser, navigate, searchParams]);
 
   const signInHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -36,25 +54,47 @@ const SignIn: FunctionComponent<SignInProps> = ({ setIsSignIn, isSignIn }) => {
 
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success(`Login successfully`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
       .catch((error) => {
-        setError(convertErrorCodeToMessage(error.code));
+        toast.error(convertErrorCodeToMessage(error.code), {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // setError(convertErrorCodeToMessage(error.code));
       })
       .finally(() => setIsLoading(false));
   };
 
   return (
     <>
-      {currentUser && (
-        <ModalNotification type="success" message={"Sign in successfully"} />
-      )}
+      <ToastContainer />
+      {/* {currentUser && (
+        // <ModalNotification type="success" message={"Sign in successfully"} />
+        <ToastContainer />
+      )} */}
       {isLoading && (
         <div className="z-10 tw-flex-center h-screen relative">
           <div className="w-28 h-28 border-[10px] rounded-full border-primary border-t-transparent animate-spin "></div>
         </div>
       )}
-      {error && (
+      {/* {error && (
         <ModalNotification type="error" message={error} setError={setError} />
-      )}
+      )} */}
 
       <div className="px-4 py-2 rounded-xl max-w-xl w-full min-h-[500px] text-white/70 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center mb-5">

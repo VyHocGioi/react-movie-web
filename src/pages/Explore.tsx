@@ -111,11 +111,11 @@ const Explore: FunctionComponent<ExploreProps> = () => {
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
         <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
-            src="/logo.png"
+            src="/tvflix.png"
             className="object-cover w-10 h-10 rounded-full"
           />
           <p className="text-xl font-medium tracking-wider text-white uppercase">
-            Moon<span className="text-primary">light</span>
+            TV<span className="text-primary">flix</span>
           </p>
         </Link>
         <button onClick={() => setIsSidebarActive((prev) => !prev)}>

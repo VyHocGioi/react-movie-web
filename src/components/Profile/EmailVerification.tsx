@@ -62,12 +62,12 @@ const EmailVerification: FunctionComponent<EmailVerificationProps> = ({
           ></div>
         </>
       )}
-      <div className="mt-10 flex justify-between max-w-[600px]">
+      {/* <div className="mt-10 flex justify-between max-w-[600px]">
         <p className="text-white text-lg">
           {!currentUser?.emailVerified
             ? "Your email is not verified yet."
             : "Your email is verified."}
-        </p>
+        </p>s
         {isShowSentButton && (
           <button
             onClick={sendVerificationEmail}
@@ -77,7 +77,7 @@ const EmailVerification: FunctionComponent<EmailVerificationProps> = ({
           </button>
         )}
         {!isShowSentButton && <p className="text-lg ">Waiting for verify</p>}
-      </div>
+      </div> */}
     </>
   );
 };

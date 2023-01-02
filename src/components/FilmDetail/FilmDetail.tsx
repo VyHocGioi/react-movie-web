@@ -110,15 +110,13 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
       )}
 
       <div className="flex items-center justify-between px-5 my-3 md:hidden">
-        <Link
-          to="/"
-          className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
-            src="/logo.png"
+            src="/tvflix.png"
             className="object-cover w-10 h-10 rounded-full"
           />
           <p className="text-xl font-medium tracking-wider text-white uppercase">
-            Moon<span className="text-primary">light</span>
+            TV<span className="text-primary">flix</span>
           </p>
         </Link>
         <button onClick={() => setIsSidebarActive((prev) => !prev)}>
@@ -146,7 +144,8 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
               style={{
                 backgroundImage: `url(${resizeImage(detail.backdrop_path)})`,
               }}
-              className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-bl-2xl relative">
+              className="bg-cover bg-center bg-no-repeat md:h-[400px] h-[300px] rounded-bl-2xl relative"
+            >
               <div className="h-full bg-gradient-to-br from-transparent to-black/70 rounded-bl-2xl">
                 <div className="flex flex-col md:flex-row bottom-[-85%] md:bottom-[-20%]  items-start absolute left-1/2 -translate-x-1/2  w-full max-w-[1000px] ">
                   <div className="flex items-center gap-5">
@@ -161,7 +160,8 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                     {isMobile && (
                       <Link
                         to="watch"
-                        className="flex items-center gap-6 py-3 pl-6 pr-12 mt-24 text-white transition duration-300 rounded-full bg-primary hover:bg-blue-600 ">
+                        className="flex items-center gap-6 py-3 pl-6 pr-12 mt-24 text-white transition duration-300 rounded-full bg-primary hover:bg-blue-600 "
+                      >
                         <BsFillPlayFill size={25} />
                         <span className="text-lg font-medium">WATCH</span>
                       </Link>
@@ -177,12 +177,11 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                     </div>
                     <ul className="flex flex-wrap gap-3 mt-3 md:mt-7">
                       {detail.genres.slice(0, 3).map((genre) => (
-                        <li
-                          key={genre.id}
-                          className="mb-3">
+                        <li key={genre.id} className="mb-3">
                           <Link
                             to={`/explore?genre=${genre.id}`}
-                            className="px-3 py-1 font-medium uppercase transition duration-300 border border-gray-300 rounded-full md:px-5 md:py-2 md:text-white hover:brightness-75">
+                            className="px-3 py-1 font-medium uppercase transition duration-300 border border-gray-300 rounded-full md:px-5 md:py-2 md:text-white hover:brightness-75"
+                          >
                             {genre.name}
                           </Link>
                         </li>
@@ -193,7 +192,8 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                   {!isMobile && (
                     <Link
                       to="watch"
-                      className="flex items-center gap-6 py-3 pl-6 pr-12 mt-24 text-white transition duration-300 rounded-full bg-primary hover:bg-blue-600 ">
+                      className="flex items-center gap-6 py-3 pl-6 pr-12 mt-24 text-white transition duration-300 rounded-full bg-primary hover:bg-blue-600 "
+                    >
                       <BsFillPlayFill size={25} />
                       <span className="text-lg font-medium">WATCH</span>
                     </Link>
@@ -204,7 +204,8 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                     onClick={bookmarkedHandler}
                     className={`tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group ${
                       isBookmarked && "!border-primary"
-                    }`}>
+                    }`}
+                  >
                     <AiFillHeart
                       size={20}
                       className={`text-white group-hover:text-primary transition duration-300 ${
@@ -214,18 +215,18 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                   </button>
                   {!isMobile && (
                     <>
-                      <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
+                      {/* <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
                         <BsShareFill
                           size={20}
                           className="text-white transition duration-300 group-hover:text-primary"
                         />
-                      </button>
-                      <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
+                      </button> */}
+                      {/* <button className="tw-flex-center h-12 w-12 rounded-full border-[3px] border-white shadow-lg hover:border-primary transition duration-300 group">
                         <BsThreeDots
                           size={20}
                           className="text-white transition duration-300 group-hover:text-primary"
                         />
-                      </button>
+                      </button> */}
                     </>
                   )}
                 </div>
@@ -303,10 +304,7 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
 
             <div className="flex-grow min-h-[500px] md:border-r border-dark-lighten md:px-16 px-5 md:py-7 pt-40">
               {/* {!detail && <Skeleton className="w-full h-[500px]" />} */}
-              <FilmTabInfo
-                detail={detail}
-                {...others}
-              />
+              <FilmTabInfo detail={detail} {...others} />
             </div>
 
             <div className="shrink-0 md:max-w-[300px] w-full px-6 pt-6">
@@ -329,7 +327,8 @@ const FilmDetail: FC<FilmInfo> = ({ similar, videos, detail, ...others }) => {
                           height="100%"
                           src={`https://www.youtube.com/embed/${video.key}?enablejsapi=1&amp;origin=http%3A%2F%2Flocalhost%3A3000&amp;widgetid=1`}
                           id="widget2"
-                          className="absolute top-0 left-0 !w-full !h-full"></iframe>
+                          className="absolute top-0 left-0 !w-full !h-full"
+                        ></iframe>
                       </div>
                       <p className="mt-3 overflow-hidden text-lg whitespace-nowrap text-ellipsis">
                         {video.name}
