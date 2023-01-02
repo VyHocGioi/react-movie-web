@@ -27,15 +27,13 @@ const Search: FunctionComponent<SearchProps> = () => {
       {query && <Title value={`Search: ${query} | Moonlight`} />}
 
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
-        <Link
-          to="/"
-          className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
-            src="/logo.png"
+            src="/tvflix.png"
             className="object-cover w-10 h-10 rounded-full"
           />
           <p className="text-xl font-medium tracking-wider text-white uppercase">
-            Moon<span className="text-primary">light</span>
+            TV<span className="text-primary">flix</span>
           </p>
         </Link>
         <button onClick={() => setIsSidebarActive((prev) => !prev)}>
@@ -54,11 +52,13 @@ const Search: FunctionComponent<SearchProps> = () => {
           <div
             className={`relative z-30 md:max-w-[50vw] w-full mx-auto translate-y-[120px] transition duration-300 text-xl ${
               query && "!translate-y-0"
-            }`}>
+            }`}
+          >
             <h1
               className={`text-white text-[25px] font-medium text-center absolute md:-top-6 -top-14 left-0 right-0  ${
                 query ? "opacity-0 invisible" : "opacity-100 visible"
-              } transition duration-500`}>
+              } transition duration-500`}
+            >
               Find your favourite movies, TV shows, people and more
             </h1>
             <SearchBox autoFocus />
@@ -79,7 +79,8 @@ const Search: FunctionComponent<SearchProps> = () => {
               <div
                 // @ts-ignore
                 ref={parent}
-                className="px-4 pt-3 rounded-md shadow-md bg-dark-lighten">
+                className="px-4 pt-3 rounded-md shadow-md bg-dark-lighten"
+              >
                 <div className="flex items-center justify-between pb-3 text-white">
                   <p className="text-lg ">Search Results</p>
                   <button onClick={() => setOpenSearchFilter((prev) => !prev)}>
@@ -96,7 +97,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                       }}
                       className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                         currentTab === "multi" && "bg-dark-lighten-2"
-                      }`}>
+                      }`}
+                    >
                       <span>All</span>
                     </button>
                     <button
@@ -106,7 +108,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                       }}
                       className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                         currentTab === "movie" && "bg-dark-lighten-2"
-                      }`}>
+                      }`}
+                    >
                       <span>Movie</span>
                     </button>
                     <button
@@ -116,7 +119,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                       }}
                       className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                         currentTab === "tv" && "bg-dark-lighten-2"
-                      }`}>
+                      }`}
+                    >
                       <span>TV Show</span>
                     </button>
                     <button
@@ -126,7 +130,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                       }}
                       className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                         currentTab === "person" && "bg-dark-lighten-2"
-                      }`}>
+                      }`}
+                    >
                       <span>People</span>
                     </button>
                   </div>
@@ -147,7 +152,8 @@ const Search: FunctionComponent<SearchProps> = () => {
             <div
               // @ts-ignore
               ref={parent}
-              className="px-4 pt-3 rounded-md shadow-md bg-dark-lighten">
+              className="px-4 pt-3 rounded-md shadow-md bg-dark-lighten"
+            >
               <div className="flex items-center justify-between pb-3 text-white">
                 <p className="text-lg ">Search Results</p>
                 <button onClick={() => setOpenSearchFilter((prev) => !prev)}>
@@ -164,7 +170,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                     }}
                     className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                       currentTab === "multi" && "bg-dark-lighten-2"
-                    }`}>
+                    }`}
+                  >
                     <span>All</span>
                   </button>
                   <button
@@ -174,7 +181,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                     }}
                     className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                       currentTab === "movie" && "bg-dark-lighten-2"
-                    }`}>
+                    }`}
+                  >
                     <span>Movie</span>
                   </button>
                   <button
@@ -184,7 +192,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                     }}
                     className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                       currentTab === "tv" && "bg-dark-lighten-2"
-                    }`}>
+                    }`}
+                  >
                     <span>TV Show</span>
                   </button>
                   <button
@@ -194,7 +203,8 @@ const Search: FunctionComponent<SearchProps> = () => {
                     }}
                     className={`w-full hover:bg-dark-lighten-2  py-1 rounded-md transition duration-300 ${
                       currentTab === "person" && "bg-dark-lighten-2"
-                    }`}>
+                    }`}
+                  >
                     <span>People</span>
                   </button>
                 </div>

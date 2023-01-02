@@ -39,7 +39,7 @@ const SidebarMini: FunctionComponent = () => {
         <Link to="/">
           <LazyLoadImage
             alt="Logo"
-            src="/logo.png"
+            src="/tvflix.png"
             effect="opacity"
             className="w-10 h-10"
           />
@@ -49,14 +49,16 @@ const SidebarMini: FunctionComponent = () => {
             to="/"
             className={`hover:text-primary transition duration-300 ${
               location.pathname === "/" && "text-primary"
-            }`}>
+            }`}
+          >
             <AiOutlineHome size={25} />
           </Link>
           <Link
             to="/explore"
             className={`hover:text-primary transition duration-300 ${
               location.pathname === "/explore" && "text-primary"
-            }`}>
+            }`}
+          >
             <MdOutlineExplore size={25} />
           </Link>
 
@@ -64,21 +66,24 @@ const SidebarMini: FunctionComponent = () => {
             onClick={() => personalPageHandler("/bookmarked")}
             className={`hover:text-primary transition duration-300 ${
               location.pathname === "/bookmarked" && "text-primary"
-            }`}>
+            }`}
+          >
             <BsBookmarkHeart size={25} />
           </button>
           <button
             onClick={() => personalPageHandler("/history")}
             className={`hover:text-primary transition duration-300 ${
               location.pathname === "/history" && "text-primary"
-            }`}>
+            }`}
+          >
             <AiOutlineHistory size={25} />
           </button>
           <button
             onClick={() => personalPageHandler("/profile")}
             className={`hover:text-primary transition duration-300 ${
               location.pathname === "/profile" && "text-primary"
-            }`}>
+            }`}
+          >
             <BiUserCircle size={25} />
           </button>
         </div>

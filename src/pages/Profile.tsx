@@ -180,15 +180,13 @@ const Profile: FunctionComponent<ProfileProps> = () => {
       <ToastContainer />
 
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
-        <Link
-          to="/"
-          className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LazyLoadImage
-            src="/logo.png"
+            src="/tvflix.png"
             className="object-cover w-10 h-10 rounded-full"
           />
           <p className="text-xl font-medium tracking-wider text-white uppercase">
-            Moon<span className="text-primary">light</span>
+            TV<span className="text-primary">flix</span>
           </p>
         </Link>
         <button onClick={() => setIsSidebarActive((prev) => !prev)}>
@@ -203,7 +201,8 @@ const Profile: FunctionComponent<ProfileProps> = () => {
               e.preventDefault();
               reAuthentication(isShowPromptReAuthFor);
             }}
-            className="z-10 fixed md:w-[500px] md:min-h-[200px] min-h-[230px] top-[40%] md:left-[35%] left-[5%] right-[5%] bg-dark-lighten rounded-md px-3 py-2">
+            className="z-10 fixed md:w-[500px] md:min-h-[200px] min-h-[230px] top-[40%] md:left-[35%] left-[5%] right-[5%] bg-dark-lighten rounded-md px-3 py-2"
+          >
             <p className="mb-3 text-lg font-medium text-center text-white">
               Type your password again to reauthenticate
             </p>
@@ -220,7 +219,8 @@ const Profile: FunctionComponent<ProfileProps> = () => {
           </form>
           <div
             onClick={() => setIsShowPromptReAuthFor(undefined)}
-            className="fixed top-0 left-0 w-full h-full z-[5] bg-black/60"></div>
+            className="fixed top-0 left-0 w-full h-full z-[5] bg-black/60"
+          ></div>
         </>
       )}
 
