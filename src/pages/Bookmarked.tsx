@@ -39,7 +39,7 @@ const Bookmarked: FunctionComponent<BookmarkedProps> = () => {
 
   return (
     <>
-      <Title value="Bookmark | Moonlight" />
+      <Title value="Bookmark | TVFLIX" />
 
       <FilmListViewForBookmarkAndHistory
         films={bookmarkedFilms}

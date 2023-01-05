@@ -98,7 +98,7 @@ const FilmWatch: FunctionComponent<FilmWatchProps & getWatchReturnedType> = ({
             (detail as DetailMovie).title || (detail as DetailTV).name
           } ${
             media_type === "tv" ? `- Season ${seasonId} - Ep ${episodeId}` : ""
-          } | Moonlight`}
+          } | TVFLIX`}
         />
       )}
 
