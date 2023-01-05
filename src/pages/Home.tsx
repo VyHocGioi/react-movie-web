@@ -75,7 +75,7 @@ const Home: FC = () => {
 
   return (
     <>
-      <Title value="HypoHub | Watching Website" />
+      <Title value="TVFLIX | Watching Website" />
 
       <div className="flex items-center justify-between px-5 my-5 md:hidden">
         <Link to="/" className="flex items-center gap-2">
